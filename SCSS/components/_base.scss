@@ -1,0 +1,33 @@
+html {
+  // size is measure in the basis of REMs, (thats makes easy for responsive design)
+  // default font size 16px = 100% (i.e 1rem = 16px)
+  // here I set default font size to 62.5%, (i.e 1rem = 10px),
+  // this makes easier to calculate rem in the basis of 10px = 1rem,
+  // e.g 13px = (13/10)rem = 1.3rem  ( >> this is super easy then calcualte 13px = 13/16 = 0.8125rem )
+
+  font-size: 62.5%; // 1rem = 10px; (100/16)*10 = 62.5%;
+
+  // font size in differetn size of screen width
+  @include respond-mediaQuery(big-screen) {
+    font-size: 62.5%; // 1rem = 10px; (100/16)*10 = 62.5%;
+  }
+  @include respond-mediaQuery(tab-landscape) {
+    font-size: 56.25%; // 1rem = 9px; (100/16)*9= 56.25%;
+  }
+  @include respond-mediaQuery(tab-port) {
+    font-size: 50%; // 1rem = 8px; (100/16)*8= 50%;
+  }
+  @include respond-mediaQuery(phone) {
+    font-size: 40%; // 1rem = 6.4px; (100/16)*6.4= 40%;
+  }
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  line-height: inherit;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}

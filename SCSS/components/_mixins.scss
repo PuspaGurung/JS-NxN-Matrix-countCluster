@@ -1,0 +1,31 @@
+// MEDIA QUERY
+// == BREAK POINT ==
+
+/* 0 - 600px: phone,
+600 - 900px> tablet portranit,
+900 - 1200px: tablet landscape,
+1200px > > : large screen width
+*/
+
+@mixin respond-mediaQuery($breakpoint) {
+  @if $breakpoint==phone {
+    @media (max-width: 37.5em) {
+      @content;
+    } // 600px = 600/16 = 37.5em;
+  }
+  @if $breakpoint==tab-port {
+    @media (max-width: 56.26em) {
+      @content;
+    } // 900px
+  }
+  @if $breakpoint==tab-landscape {
+    @media (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if $breakpoint==big-screen {
+    @media (min-width: 75em) {
+      @content;
+    } //  (  screen width is > 1200px)
+  }
+}

@@ -1,0 +1,28 @@
+/* 0 - 600px: phone,
+600 - 900px> tablet portranit,
+900 - 1200px: tablet landscape,
+1200px > > : large screen width
+*/
+html {
+  font-size: 62.5%; }
+  @media (min-width: 75em) {
+    html {
+      font-size: 62.5%; } }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.26em) {
+    html {
+      font-size: 50%; } }
+  @media (max-width: 37.5em) {
+    html {
+      font-size: 40%; } }
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  line-height: inherit; }
+
+img {
+  margin: 0;
+  padding: 0; }
