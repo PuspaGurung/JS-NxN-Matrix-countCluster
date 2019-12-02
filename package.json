@@ -1,0 +1,23 @@
+{
+  "name": "matrix-cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PuspaGurung/JS-NxN-Matrix-countCluster.git"
+  },
+  "author": "Puspa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PuspaGurung/JS-NxN-Matrix-countCluster/issues"
+  },
+  "homepage": "https://github.com/PuspaGurung/JS-NxN-Matrix-countCluster#readme",
+  "dependencies": {
+    "init": "^0.1.2",
+    "node-sass": "^4.13.0"
+  }
+}
