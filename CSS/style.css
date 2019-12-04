@@ -26,3 +26,19 @@ body {
 img {
   margin: 0;
   padding: 0; }
+
+.container {
+  width: 80%;
+  margin: 0 auto; }
+
+.grid-wrapper .grid {
+  display: flex;
+  list-style: none;
+  flex-grow: row wrap;
+  margin: 0 auto; }
+
+.grid-control__color #grid-form {
+  display: flex; }
+
+.grid-control__size {
+  width: 100%; }

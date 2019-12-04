@@ -1,0 +1,23 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.grid-wrapper {
+  .grid {
+    display: flex;
+    list-style: none;
+    flex-grow: row wrap;
+    margin: 0 auto;
+  }
+}
+
+.grid-control {
+  &__color {
+    #grid-form {
+      display: flex;
+    }
+  }
+  &__size {
+    width: 100%;
+  }
+}

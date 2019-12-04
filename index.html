@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Matrix, count cluster of random square</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="CSS/style.css" />
-  </head>
-  <body>
-    <script src="./js/main.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+		<title>Matrix, count cluster of random square</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+		<link rel="stylesheet" href="CSS/style.css"/>
+	</head>
+	<body>
+		<div class="container">
+
+			<div class="grid-wrapper"></div>
+
+			<div class="grid-control">
+				<div class="grid-control__color">
+
+					<fieldset>
+						<label name="hover-color">
+							Select hover Color:</label>
+						<input type="color" name="hover-color" id="hover-color"/>
+
+						<label name="bg-color">
+							Select grid background Color:</label>
+						<input type="color" name="bg-color" id="bg-color"/>
+
+						<input type="button" onclick="handleGridColor('hover-color','bg-color')" value="Apply color">
+					</fieldset>
+
+				</div>
+				<div class="grid-control__size">
+					<fieldset>
+						Select Grid size:
+						<input type="number" id="gridSize" min="5" max="10" placeholder="Grid size">
+						<span id="error-message"></span>
+						<input type="button" onclick="applyGridSize('gridSize')" value="Apply grid size">
+					</fieldset>
+				</div>
+			</div>
+		</div>
+
+		<script src="./js/main.js"></script>
+	</body>
 </html>
