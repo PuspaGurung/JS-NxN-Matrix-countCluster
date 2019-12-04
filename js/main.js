@@ -3,7 +3,9 @@ let domControl = {
   submitButton: document.getElementById("submit-button"),
   hoverColor: document.getElementById("hover-color").value,
   bgColor: document.getElementById("bg-color").value,
-  gridWrapper: document.querySelector(".grid-wrapper")
+  gridWrapper: document.querySelector(".grid-wrapper"),
+  grid: document.querySelector("grid"),
+  gridItem: document.querySelector(".grid__item")
 };
 
 // GRID
@@ -36,16 +38,37 @@ class Grid {
         let li = document.createElement("li");
         li.classList.add("grid__item");
         let txtNode = document.createTextNode(
-          `Val:${gridCol.value}, Visit:${gridCol.visited}`
+          `${gridCol.value}` //val: , Visit:${gridCol.visited}
         );
         li.appendChild(txtNode);
         ul.appendChild(li);
+
+        // *********** APPLY STYLESHEET ****************/
+        let content = {
+          width: 50
+        };
+        let styleUl = {
+          width: `${content.width}rem`
+        };
+        let addStyleUl = ul.style;
+        for (let style in styleUl) {
+          addStyleUl[style] = styleUl[style];
+        }
+        let styleLi = {
+          width: `${Math.floor(content.width / this.gridSize)}rem`,
+          minHeight: `${Math.floor(content.width / this.gridSize)}rem`,
+          background: gridCol.value == 1 ? "red" : "normal"
+        };
+        let addStyleLi = li.style;
+
+        for (let style in styleLi) {
+          addStyleLi[style] = styleLi[style];
+        }
       });
     });
     domControl.gridWrapper.appendChild(ul);
   }
 }
-
 // Default grid size
 let grid = new Grid(5);
 

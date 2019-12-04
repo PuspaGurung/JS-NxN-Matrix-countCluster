@@ -3,11 +3,25 @@
   margin: 0 auto;
 }
 .grid-wrapper {
+  margin: 0 auto;
   .grid {
     display: flex;
     list-style: none;
-    flex-grow: row wrap;
+    flex-flow: row wrap;
+    justify-content: center;
     margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+
+    &__item {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid black;
+      text-align: center;
+    }
   }
 }
 
