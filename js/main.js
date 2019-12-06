@@ -14,6 +14,7 @@ class Grid {
     this.gridSize = gridSize;
     this.createGrid();
     this.displayGrid();
+    this.getClusterItemLength();
   }
   createGrid() {
     let arrRow = [];
@@ -38,12 +39,12 @@ class Grid {
         let li = document.createElement("li");
         li.classList.add("grid__item");
         let txtNode = document.createTextNode(
-          `${gridCol.value}` //val: , Visit:${gridCol.visited}
+          `value:${gridCol.value}, visited:${gridCol.visited}` //val: , Visit:${gridCol.visited}
         );
         li.appendChild(txtNode);
         ul.appendChild(li);
 
-        // *********** APPLY STYLESHEET ****************/
+        // *********** APPLY STYLESHEET: ul(className=gird) and li(className=gird__item) ****************/
         let content = {
           width: 50
         };
@@ -57,7 +58,7 @@ class Grid {
         let styleLi = {
           width: `${Math.floor(content.width / this.gridSize)}rem`,
           minHeight: `${Math.floor(content.width / this.gridSize)}rem`,
-          background: gridCol.value == 1 ? "red" : "normal"
+          background: gridCol.value == 1 ? "red" : "white"
         };
         let addStyleLi = li.style;
 
@@ -68,11 +69,88 @@ class Grid {
     });
     domControl.gridWrapper.appendChild(ul);
   }
+
+  getClusterItemLength() {
+    const grid = this.grid;
+    console.log(grid);
+    let totNumOfCluster = 0;
+    let totNumOfClusterItem = 0;
+    let arrIndxValOne = []; // Array that contains all the array of index of 1 connected  (vertically and horizontally)
+
+    let arrayOfCluster = []; // Contains the array of cluster
+
+    let filterGrid = function(row, col, indxValOne = []) {
+      let gridItem = grid[row][col];
+      if (gridItem.value == 1 && gridItem.visited == false) {
+        gridItem.visited = true;
+
+        //Index of present 1 in the grid(matrix)
+        indxValOne.push([row, col]);
+
+        arrIndxValOne.push(indxValOne);
+
+        // Filter the array of index of one
+        // Array of cluster of connected one
+        for (let i = 0; i < arrIndxValOne.length; i++) {
+          if (arrayOfCluster.includes(arrIndxValOne[i]) == false) {
+            arrayOfCluster.push(arrIndxValOne[i]);
+          }
+        }
+
+        //*** VISIT GRID ITEM HORIZONTALLY AND VERTICALLY CONNECTED *******/
+        if (row < grid.length - 1) {
+          filterGrid(row + 1, col, indxValOne);
+        }
+        if (col < grid[row].length - 1) {
+          filterGrid(row, col + 1, indxValOne);
+        }
+        if (row > 0) {
+          filterGrid(row - 1, col, indxValOne);
+        }
+        if (col > 0) {
+          filterGrid(row, col - 1, indxValOne);
+        }
+      }
+    };
+
+    // Loop through grid
+    // Pass the index of grid as the argument for filterGrid()
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        if (grid[row][col].value == 1) {
+          totNumOfClusterItem++;
+          filterGrid(row, col);
+        }
+      }
+    }
+
+    // Total number of cluster
+    totNumOfCluster = arrayOfCluster.length;
+    // Total number of items(square item) in the grid
+    console.log(`total number of cluster:${totNumOfCluster}`);
+    console.log(
+      `toal number of cluster items in the grid:${totNumOfClusterItem}`
+    );
+    // Get the details of each item of the cluster, like: item Index, number of items in the cluster, index of cluster
+    let getClusterItemProperties = [];
+    arrayOfCluster.forEach((cluster, indx) => {
+      cluster.forEach(clusterItem => {
+        getClusterItemProperties.push({
+          itemIndx: clusterItem[0] * this.gridSize + clusterItem[1], // Index of each element in the cluster based on the grid (dispaly in browser)
+          noOfItem: cluster.length, // Total number of the item in the cluster
+          indxParentCluster: indx // Index of cluster
+        });
+      });
+    });
+    console.log(getClusterItemProperties);
+  }
 }
 // Default grid size
-let grid = new Grid(5);
+window.onload = () => {
+  new Grid(5);
+};
 
-//Default grid size in Input field
+//Default no of grid Size in input field
 document.getElementById("gridSize").defaultValue = 5;
 
 // Change grid size

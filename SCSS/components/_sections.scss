@@ -4,7 +4,10 @@
 }
 .grid-wrapper {
   margin: 0 auto;
+  position: relative;
+  min-height: 58rem;
   .grid {
+    position: absolute;
     display: flex;
     list-style: none;
     flex-flow: row wrap;
