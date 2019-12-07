@@ -1,13 +1,46 @@
-.container {
-  width: 80%;
-  margin: 0 auto;
-}
 .grid-wrapper {
+  width: 100%;
   margin: 0 auto;
   position: relative;
-  min-height: 58rem;
+  min-height: 90vh;
+
+  .grid-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    &__title {
+      margin: 3rem 0 2.5rem;
+      color: $color-white-secondary;
+    }
+    &__seperator {
+      height: 0.5rem;
+      width: 0.5rem;
+      @include border-radius-50percent;
+      background-color: $color-primary;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 4rem;
+
+      &::before,
+      &::after {
+        content: "";
+        height: 1px;
+        width: 5rem;
+        background-color: $color-secondary;
+        position: absolute;
+        top: 50%;
+        @include transform-y-minus50percent;
+      }
+      &::before {
+        left: -6rem;
+      }
+      &::after {
+        right: -6rem;
+      }
+    }
+  }
   .grid {
-    // position: absolute;
+    // display: none !important;
+    position: absolute;
     display: flex;
     list-style: none;
     flex-flow: row wrap;
@@ -16,14 +49,16 @@
     padding: 0;
     box-sizing: border-box;
     margin-bottom: 20px;
-
+    left: 50%;
+    @include transform-x-minus50percent;
+    z-index: 10;
     &__item {
       box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      border: 1px solid black;
+      border: 1px solid $color-secondary-light;
       text-align: center;
     }
     .hover-item {
@@ -34,12 +69,51 @@
 }
 
 .grid-control {
+  padding: 3rem;
+  width: 100%;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7) 100%,
+    rgba(0, 0, 0, 0.6) 100%,
+    transparent 50%
+  );
+  margin-bottom: 3rem;
   &__color {
-    #grid-form {
-      display: flex;
+    border-bottom: 1px solid $color-grey;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+
+    #hover-color,
+    #bg-color {
+      width: 4.5rem;
+      height: 2.5rem;
+      border: none;
+      cursor: pointer;
+      margin: 0 1rem;
+    }
+    img {
+      margin: 0 1rem;
     }
   }
-  &__size {
+  &__size,
+  &__color {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__size {
+    #gridSize {
+      line-height: normal;
+      border: 1px solid $color-secondary;
+      outline: none;
+      display: inline-block;
+      margin: 0 1rem;
+      text-align: center;
+      padding: 0.8rem 1rem;
+      width: 10rem;
+    }
+    .error-message {
+      padding-right: 1rem;
+    }
   }
 }

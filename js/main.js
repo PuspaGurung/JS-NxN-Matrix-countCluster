@@ -1,9 +1,8 @@
 // GRID
 class Grid {
-  constructor(gridSize, hoverColor, bgColor) {
+  constructor(gridSize) {
     this.gridSize = gridSize;
-    this.hoverColor = hoverColor;
-    this.bgColor = bgColor;
+
     this.createGrid();
     this.displayGrid();
     this.getCluster();
@@ -44,7 +43,9 @@ class Grid {
 
         // *********** APPLY STYLESHEET: ul(className=gird) and li(className=gird__item) ****************/
         let content = {
-          width: 50
+          // Default grid width: 40rem,
+          // Increment of grid size by 1 then the grid width increasy by 8rem
+          width: 40 + (this.gridSize - 5) * 8
         };
         let styleUl = {
           width: `${content.width}rem`
@@ -53,6 +54,7 @@ class Grid {
         for (let style in styleUl) {
           addStyleUl[style] = styleUl[style];
         }
+
         let styleLi = {
           width: `${Math.floor(content.width / this.gridSize)}rem`,
           minHeight: `${Math.floor(content.width / this.gridSize)}rem`,
@@ -194,32 +196,33 @@ class Grid {
         });
       });
 
-      gridElement[element].addEventListener("mouseover", e => {
-        let target = e.target;
-        let targetIndex = e.target.index;
+      document
+        .querySelector(".grid-wrapper")
+        .addEventListener("mouseover", e => {
+          let target = e.target;
 
-        // Array that contain two className of targe hover element:: [grid__item, grid--cluster(cluster index)]
-        let targetClassName = target.className;
+          // Array that contain two className of targe hover element:: [grid__item, grid--cluster(cluster index)]
+          let targetClassName = target.className;
 
-        //Get second element of array targetClassName:: grid--cluster(cluster index)
-        //Target cluster contains the same className in the element of that cluster
-        let targetClusterItemUniqueClass = targetClassName.split(" ")[1];
+          //Get second element of array targetClassName:: grid--cluster(cluster index)
+          //Target cluster contains the same className in the element of that cluster
+          let targetClusterItemUniqueClass = targetClassName.split(" ")[1];
 
-        // Get all list of unique className of individual cluster item
-        let getAllTargetClusterItemUniqueClass = document.querySelectorAll(
-          `.${targetClusterItemUniqueClass}`
-        );
+          // Get all list of unique className of individual cluster item
+          let getAllTargetClusterItemUniqueClass = document.querySelectorAll(
+            `.${targetClusterItemUniqueClass}`
+          );
 
-        let getAllHoverMe = document.querySelectorAll(".hover-item");
-        if (getAllHoverMe.length > 0) {
-          getAllHoverMe.forEach(hover => {
-            hover.className = hover.className.replace("hover-item", "");
+          let getAllHoverMe = document.querySelectorAll(".hover-item");
+          if (getAllHoverMe.length > 0) {
+            getAllHoverMe.forEach(hover => {
+              hover.className = hover.className.replace("hover-item", "");
+            });
+          }
+          getAllTargetClusterItemUniqueClass.forEach(cls => {
+            cls.classList.add("hover-item");
           });
-        }
-        getAllTargetClusterItemUniqueClass.forEach(cls => {
-          cls.classList.add("hover-item");
         });
-      });
     }
   }
   applyGridColor() {
@@ -259,6 +262,4 @@ function handleGridColor(hover, bg) {
   let hoverColor = document.getElementById(hover).value;
   let bgColor = document.getElementById(bg).value;
   console.log(hoverColor, bgColor);
-
-  new Grid(hoverColor, bgColor);
 }

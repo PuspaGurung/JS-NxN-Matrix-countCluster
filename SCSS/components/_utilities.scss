@@ -1,0 +1,25 @@
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.btn-primary {
+  padding: 1rem 1.8rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  @include transition-delay-sm;
+  font-size: inherit;
+  background: $color-white-secondary;
+
+  &:hover {
+    background: $color-grey;
+  }
+}
+
+.wrapper {
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
