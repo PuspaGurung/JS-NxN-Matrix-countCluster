@@ -7,7 +7,7 @@
   position: relative;
   min-height: 58rem;
   .grid {
-    position: absolute;
+    // position: absolute;
     display: flex;
     list-style: none;
     flex-flow: row wrap;
@@ -15,6 +15,7 @@
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
+    margin-bottom: 20px;
 
     &__item {
       box-sizing: border-box;

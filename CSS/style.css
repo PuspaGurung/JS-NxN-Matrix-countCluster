@@ -34,17 +34,16 @@ img {
 .grid-wrapper {
   margin: 0 auto;
   position: relative;
-min-height: 580px;
- }
+  min-height: 58rem; }
   .grid-wrapper .grid {
-    position: absolute;
     display: flex;
     list-style: none;
     flex-flow: row wrap;
     justify-content: center;
     margin: 0 auto;
     padding: 0;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    margin-bottom: 20px; }
     .grid-wrapper .grid__item {
       box-sizing: border-box;
       display: flex;

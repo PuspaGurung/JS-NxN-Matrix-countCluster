@@ -14,7 +14,9 @@ class Grid {
     this.gridSize = gridSize;
     this.createGrid();
     this.displayGrid();
-    this.getClusterItemLength();
+    this.getCluster();
+    this.getClusterItemProperties();
+    this.handleMouseEvent();
   }
   createGrid() {
     let arrRow = [];
@@ -34,12 +36,15 @@ class Grid {
   displayGrid() {
     let ul = document.createElement("ul");
     ul.classList.add("grid");
+    let gridWrapper = document.querySelector(".grid-wrapper");
+    gridWrapper.appendChild(ul);
+
     this.grid.forEach(gridRow => {
       gridRow.forEach(gridCol => {
         let li = document.createElement("li");
         li.classList.add("grid__item");
         let txtNode = document.createTextNode(
-          `value:${gridCol.value}, visited:${gridCol.visited}` //val: , Visit:${gridCol.visited}
+          gridCol.value // `value:${gridCol.value}, visited:${gridCol.visited}`
         );
         li.appendChild(txtNode);
         ul.appendChild(li);
@@ -67,16 +72,14 @@ class Grid {
         }
       });
     });
-    domControl.gridWrapper.appendChild(ul);
   }
 
-  getClusterItemLength() {
+  getCluster() {
     const grid = this.grid;
     console.log(grid);
     let totNumOfCluster = 0;
     let totNumOfClusterItem = 0;
     let arrIndxValOne = []; // Array that contains all the array of index of 1 connected  (vertically and horizontally)
-
     let arrayOfCluster = []; // Contains the array of cluster
 
     let filterGrid = function(row, col, indxValOne = []) {
@@ -86,7 +89,6 @@ class Grid {
 
         //Index of present 1 in the grid(matrix)
         indxValOne.push([row, col]);
-
         arrIndxValOne.push(indxValOne);
 
         // Filter the array of index of one
@@ -123,7 +125,7 @@ class Grid {
         }
       }
     }
-
+    console.log(arrayOfCluster);
     // Total number of cluster
     totNumOfCluster = arrayOfCluster.length;
     // Total number of items(square item) in the grid
@@ -131,9 +133,14 @@ class Grid {
     console.log(
       `toal number of cluster items in the grid:${totNumOfClusterItem}`
     );
-    // Get the details of each item of the cluster, like: item Index, number of items in the cluster, index of cluster
+
+    this.arrayOfCluster = arrayOfCluster;
+  }
+
+  getClusterItemProperties() {
+    // Get the properties detail of cluster each items:: item Index, number of items in the cluster, index of cluster
     let getClusterItemProperties = [];
-    arrayOfCluster.forEach((cluster, indx) => {
+    this.arrayOfCluster.forEach((cluster, indx) => {
       cluster.forEach(clusterItem => {
         getClusterItemProperties.push({
           itemIndx: clusterItem[0] * this.gridSize + clusterItem[1], // Index of each element in the cluster based on the grid (dispaly in browser)
@@ -142,7 +149,54 @@ class Grid {
         });
       });
     });
-    console.log(getClusterItemProperties);
+
+    this.getClusterItemProperties = getClusterItemProperties;
+  }
+
+  handleMouseEvent() {
+    let clusterItem = this.getClusterItemProperties;
+    console.log(clusterItem);
+    let getAllGridDOM = document.querySelectorAll(".grid");
+    let getNewGridDOM = getAllGridDOM[getAllGridDOM.length - 1];
+    let getNewGridDOMchildElements = getNewGridDOM.children;
+
+    for (
+      let element = 0;
+      element < getNewGridDOMchildElements.length;
+      element++
+    ) {
+      // Index of each new grid element
+
+      let gridElement = getNewGridDOMchildElements;
+      gridElement[element].index = element;
+      gridElement[element].innerHTML = "";
+
+      // Add same class name in each cluster item
+      // Cluster item class name is different then other cluster item class name
+      clusterItem.forEach(item => {
+        if (item.itemIndx == gridElement[element].index) {
+          gridElement[element].classList.add(
+            `grid--cluster${item.indxParentCluster}`
+          );
+        }
+      });
+
+      gridElement[element].addEventListener("click", e => {
+        let clickMe = document.getElementsByClassName("clickMe");
+        if (clickMe.length > 0) {
+          clickMe[0].innerHTML = "";
+          clickMe[0].className = clickMe[0].className.replace("clickMe", "");
+        }
+        gridElement[element].classList.add("clickMe");
+
+        let targetIndex = e.target.index;
+        clusterItem.forEach(item => {
+          if (item.itemIndx == targetIndex) {
+            gridElement[element].innerHTML = item.noOfItem;
+          }
+        });
+      });
+    }
   }
 }
 // Default grid size
