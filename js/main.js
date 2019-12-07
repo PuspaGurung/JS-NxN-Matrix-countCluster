@@ -8,7 +8,6 @@ class Grid {
     this.getCluster();
     this.getClusterItemProperties();
     this.handleMouseEvent();
-    this.applyGridColor();
   }
   createGrid() {
     let arrRow = [];
@@ -155,13 +154,20 @@ class Grid {
     let getNewGridDOM = getAllGridDOM[getAllGridDOM.length - 1];
     let getNewGridDOMchildElements = getNewGridDOM.children;
 
+    //******* DISPLAY-NON PREVIOUS GRID **** */
+    // If the user create more then 1 grid then apply css property display-none to previous grid
+    if (getAllGridDOM.length > 1) {
+      for (let i = 0; i < getAllGridDOM.length - 1; i++) {
+        getAllGridDOM[i].style.display = "none";
+      }
+    }
+
     for (
       let element = 0;
       element < getNewGridDOMchildElements.length;
       element++
     ) {
       // Index of each new grid element
-
       let gridElement = getNewGridDOMchildElements;
       gridElement[element].index = element;
       gridElement[element].innerHTML = "";
@@ -224,9 +230,6 @@ class Grid {
           });
         });
     }
-  }
-  applyGridColor() {
-    console.log(this.hoverColor, this.bgColor);
   }
 }
 // Default grid size

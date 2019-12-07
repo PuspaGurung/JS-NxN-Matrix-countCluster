@@ -60,6 +60,7 @@
       cursor: pointer;
       border: 1px solid $color-secondary-light;
       text-align: center;
+      @include transition-delay-sm;
     }
     .hover-item {
       background: blueviolet !important;
