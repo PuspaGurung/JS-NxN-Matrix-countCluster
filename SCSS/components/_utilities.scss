@@ -1,6 +1,11 @@
 .container {
-  max-width: 100rem;
+  max-width: 120rem;
   margin: 0 auto;
+
+  @include respond-mediaQuery(tab-landscape) {
+    padding: 0 2.5rem;
+    width: 100% !important;
+  }
 }
 
 .btn-primary {
@@ -21,5 +26,6 @@
   margin: 0 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 1rem 0;
 }

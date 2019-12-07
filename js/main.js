@@ -8,7 +8,9 @@ class Grid {
     this.getCluster();
     this.getClusterItemProperties();
     this.handleMouseEvent();
+    this.handleBgColor();
   }
+  // Create NxN matrix of random 1 and 0
   createGrid() {
     let arrRow = [];
     for (let row = 0; row < this.gridSize; row++) {
@@ -24,6 +26,8 @@ class Grid {
     this.grid = arrRow;
     console.log(this.grid);
   }
+
+  // Display NxN matrix in the browser (grid format)
   displayGrid() {
     let ul = document.createElement("ul");
     ul.classList.add("grid");
@@ -33,19 +37,21 @@ class Grid {
     this.grid.forEach(gridRow => {
       gridRow.forEach(gridCol => {
         let li = document.createElement("li");
-        li.classList.add("grid__item");
-        let txtNode = document.createTextNode(
-          gridCol.value // `value:${gridCol.value}, visited:${gridCol.visited}`
-        );
+        if (gridCol.value == 1) {
+          li.classList.add("grid__filled");
+        }
+        let txtNode = document.createTextNode(gridCol.value);
         li.appendChild(txtNode);
         ul.appendChild(li);
 
-        // *********** APPLY STYLESHEET: ul(className=gird) and li(className=gird__item) ****************/
+        // *********** APPLY STYLESHEET: ul(className=gird) and li ****************/
+        // Default grid width: 40rem,
+        // Grid width increasy by 8rem each time if uer increase the gridSize by 1
         let content = {
-          // Default grid width: 40rem,
-          // Increment of grid size by 1 then the grid width increasy by 8rem
           width: 40 + (this.gridSize - 5) * 8
         };
+
+        // Grid :: ul
         let styleUl = {
           width: `${content.width}rem`
         };
@@ -55,9 +61,12 @@ class Grid {
         }
 
         let styleLi = {
+          //Grid :: ul
+          //Grid item :: li
+          // Grid item width and item height is calcualte based on the grid width (ul.width)
           width: `${Math.floor(content.width / this.gridSize)}rem`,
           minHeight: `${Math.floor(content.width / this.gridSize)}rem`,
-          background: gridCol.value == 1 ? "red" : "white"
+          background: gridCol.value == 1 ? "#e00201" : "white"
         };
         let addStyleLi = li.style;
 
@@ -68,12 +77,27 @@ class Grid {
     });
   }
 
+  // Change the background of cluster if user apply cluster background Color:
+  handleBgColor() {
+    let btnApplyColor = document.getElementById("apply-color");
+    btnApplyColor.addEventListener("click", e => {
+      e.preventDefault();
+      let bgColor = document.getElementById("bg-color").value;
+      let getItemListDOM = document.querySelectorAll(".grid__filled");
+      for (let item of getItemListDOM) {
+        item.style.background = `${bgColor}`;
+      }
+    });
+  }
+
+  // Cluster :: filled squares connected to this square (horizontally or vertically)
+  // Create the array of Cluster
   getCluster() {
     const grid = this.grid;
     console.log(grid);
     let totNumOfCluster = 0;
     let totNumOfClusterItem = 0;
-    let arrIndxValOne = []; // Array that contains all the array of index of 1 connected  (vertically and horizontally)
+    let arrIndxValOne = []; // Array that contains all the array of index of 1 connected  (vertically or horizontally)
     let arrayOfCluster = []; // Contains the array of cluster
 
     let filterGrid = function(row, col, indxValOne = []) {
@@ -131,8 +155,8 @@ class Grid {
     this.arrayOfCluster = arrayOfCluster;
   }
 
+  //Cluster item properties :: index, number of items in the particular cluster, index of each cluster from the array of cluster
   getClusterItemProperties() {
-    // Get the properties detail of cluster each items:: item Index, number of items in the cluster, index of cluster
     let getClusterItemProperties = [];
     this.arrayOfCluster.forEach((cluster, indx) => {
       cluster.forEach(clusterItem => {
@@ -147,6 +171,7 @@ class Grid {
     this.getClusterItemProperties = getClusterItemProperties;
   }
 
+  // Handle mouseover and click mouse event
   handleMouseEvent() {
     let clusterItem = this.getClusterItemProperties;
     console.log(clusterItem);
@@ -258,11 +283,4 @@ function applyGridSize(size) {
   errorMessage.length > 0
     ? (errorElement.innerText = errorMessage.join(", "))
     : (errorElement.innerText = " ");
-}
-
-//*************** GRID BG COLOR and HOVER COLOR */
-function handleGridColor(hover, bg) {
-  let hoverColor = document.getElementById(hover).value;
-  let bgColor = document.getElementById(bg).value;
-  console.log(hoverColor, bgColor);
 }

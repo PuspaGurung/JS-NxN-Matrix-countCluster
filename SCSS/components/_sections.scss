@@ -1,8 +1,7 @@
 .grid-wrapper {
   width: 100%;
-  margin: 0 auto;
   position: relative;
-  min-height: 90vh;
+  padding-bottom: 4rem;
 
   .grid-header {
     text-align: center;
@@ -39,8 +38,6 @@
     }
   }
   .grid {
-    // display: none !important;
-    position: absolute;
     display: flex;
     list-style: none;
     flex-flow: row wrap;
@@ -48,11 +45,9 @@
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
-    margin-bottom: 20px;
-    left: 50%;
-    @include transform-x-minus50percent;
+
     z-index: 10;
-    &__item {
+    li {
       box-sizing: border-box;
       display: flex;
       justify-content: center;
@@ -79,11 +74,13 @@
   );
   margin-bottom: 3rem;
   &__color {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-bottom: 1px solid $color-grey;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
-
-    #hover-color,
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     #bg-color {
       width: 4.5rem;
       height: 2.5rem;
@@ -95,13 +92,7 @@
       margin: 0 1rem;
     }
   }
-  &__size,
-  &__color {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
   &__size {
     #gridSize {
       line-height: normal;
@@ -112,6 +103,11 @@
       text-align: center;
       padding: 0.8rem 1rem;
       width: 10rem;
+      line-height: 2rem;
+
+      &:focus {
+        outline: 2px dashed blue;
+      }
     }
     .error-message {
       padding-right: 1rem;

@@ -21,28 +21,25 @@
 			<div class="grid-control">
 				<div class="grid-control__color">
 					<div class="wrapper">
-						Select hover Color:
-						<input type="color" name="hover-color" id="hover-color"/>
-					</div>
-					<div class="wrapper">
-						Select grid background Color:
+						Select cluster background Color:
 						<input type="color" name="bg-color" id="bg-color"/>
+						<input type="button" class="btn-primary" id="apply-color" value="Apply color">
 					</div>
-					<input type="button" class="btn-primary" onclick="handleGridColor('hover-color','bg-color')" value="Apply color">
+
 
 				</div>
 				<div class="grid-control__size">
 					<div class="wrapper">
-						Select Grid size:
+						Select Grid size (<span style="color: red;">Number of Row and Column</span>) between 5 to 10:
+					</div>
+					<div class="wrapper">
 						<input type="number" id="gridSize" min="5" max="10" placeholder="Grid size">
 						<span id="error-message"></span>
+						<input type="button" class="btn-primary" onclick="applyGridSize('gridSize')" value="Apply grid size">
 					</div>
-					<input type="button" class="btn-primary" onclick="applyGridSize('gridSize')" value="Apply grid size">
 
 				</div>
 			</div>
 		</div>
-
-		<script src="./js/main.js"></script>
 	</body>
-</html>
+</html></div><script src="./js/main.js"></script></body></html>
