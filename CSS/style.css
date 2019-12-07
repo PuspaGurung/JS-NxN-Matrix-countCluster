@@ -52,6 +52,9 @@ img {
       cursor: pointer;
       border: 1px solid black;
       text-align: center; }
+    .grid-wrapper .grid .hover-item {
+      background: blueviolet !important;
+      color: white; }
 
 .grid-control__color #grid-form {
   display: flex; }

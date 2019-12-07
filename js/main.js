@@ -1,22 +1,15 @@
-let domControl = {
-  submitForm: document.getElementById("grid-form"),
-  submitButton: document.getElementById("submit-button"),
-  hoverColor: document.getElementById("hover-color").value,
-  bgColor: document.getElementById("bg-color").value,
-  gridWrapper: document.querySelector(".grid-wrapper"),
-  grid: document.querySelector("grid"),
-  gridItem: document.querySelector(".grid__item")
-};
-
 // GRID
 class Grid {
-  constructor(gridSize) {
+  constructor(gridSize, hoverColor, bgColor) {
     this.gridSize = gridSize;
+    this.hoverColor = hoverColor;
+    this.bgColor = bgColor;
     this.createGrid();
     this.displayGrid();
     this.getCluster();
     this.getClusterItemProperties();
     this.handleMouseEvent();
+    this.applyGridColor();
   }
   createGrid() {
     let arrRow = [];
@@ -171,8 +164,8 @@ class Grid {
       gridElement[element].index = element;
       gridElement[element].innerHTML = "";
 
-      // Add same class name in each cluster item
-      // Cluster item class name is different then other cluster item class name
+      //Note: Indivudual cluster includes one unique class name in their item
+      // Add unique class Name to all item of the particualr cluster
       clusterItem.forEach(item => {
         if (item.itemIndx == gridElement[element].index) {
           gridElement[element].classList.add(
@@ -181,22 +174,56 @@ class Grid {
         }
       });
 
+      // Display the total number of cluster items when the user click on any item (filled dquare)of the cluster
+      // Do nothing when user click on empty square
       gridElement[element].addEventListener("click", e => {
-        let clickMe = document.getElementsByClassName("clickMe");
-        if (clickMe.length > 0) {
-          clickMe[0].innerHTML = "";
-          clickMe[0].className = clickMe[0].className.replace("clickMe", "");
-        }
-        gridElement[element].classList.add("clickMe");
-
         let targetIndex = e.target.index;
         clusterItem.forEach(item => {
           if (item.itemIndx == targetIndex) {
+            let clickMe = document.getElementsByClassName("clickMe");
+            if (clickMe.length > 0) {
+              clickMe[0].innerHTML = "";
+              clickMe[0].className = clickMe[0].className.replace(
+                "clickMe",
+                ""
+              );
+            }
+            gridElement[element].classList.add("clickMe");
             gridElement[element].innerHTML = item.noOfItem;
           }
         });
       });
+
+      gridElement[element].addEventListener("mouseover", e => {
+        let target = e.target;
+        let targetIndex = e.target.index;
+
+        // Array that contain two className of targe hover element:: [grid__item, grid--cluster(cluster index)]
+        let targetClassName = target.className;
+
+        //Get second element of array targetClassName:: grid--cluster(cluster index)
+        //Target cluster contains the same className in the element of that cluster
+        let targetClusterItemUniqueClass = targetClassName.split(" ")[1];
+
+        // Get all list of unique className of individual cluster item
+        let getAllTargetClusterItemUniqueClass = document.querySelectorAll(
+          `.${targetClusterItemUniqueClass}`
+        );
+
+        let getAllHoverMe = document.querySelectorAll(".hover-item");
+        if (getAllHoverMe.length > 0) {
+          getAllHoverMe.forEach(hover => {
+            hover.className = hover.className.replace("hover-item", "");
+          });
+        }
+        getAllTargetClusterItemUniqueClass.forEach(cls => {
+          cls.classList.add("hover-item");
+        });
+      });
     }
+  }
+  applyGridColor() {
+    console.log(this.hoverColor, this.bgColor);
   }
 }
 // Default grid size
@@ -207,7 +234,7 @@ window.onload = () => {
 //Default no of grid Size in input field
 document.getElementById("gridSize").defaultValue = 5;
 
-// Change grid size
+// **************** GRID SIZE ****************************/
 function applyGridSize(size) {
   let errorElement = document.getElementById("error-message");
   errorElement.style.color = "red";
@@ -225,4 +252,13 @@ function applyGridSize(size) {
   errorMessage.length > 0
     ? (errorElement.innerText = errorMessage.join(", "))
     : (errorElement.innerText = " ");
+}
+
+//*************** GRID BG COLOR and HOVER COLOR */
+function handleGridColor(hover, bg) {
+  let hoverColor = document.getElementById(hover).value;
+  let bgColor = document.getElementById(bg).value;
+  console.log(hoverColor, bgColor);
+
+  new Grid(hoverColor, bgColor);
 }
