@@ -5,20 +5,26 @@
 */
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
-@media (min-width: 75em) {
+@media (min-width: 80em) {
   html {
     font-size: 62.5%;
   }
 }
-@media (max-width: 75em) {
+@media (max-width: 80em) {
   html {
     font-size: 56.25%;
   }
 }
-@media (max-width: 56.26em) {
+@media (max-width: 65em) {
   html {
-    font-size: 50%;
+    font-size: 46.88%;
+  }
+}
+@media (max-width: 49em) {
+  html {
+    font-size: 43.75%;
   }
 }
 @media (max-width: 37.5em) {
@@ -51,12 +57,6 @@ body {
 .container {
   max-width: 120rem;
   margin: 0 auto;
-}
-@media (max-width: 75em) {
-  .container {
-    padding: 0 2.5rem;
-    width: 100% !important;
-  }
 }
 
 .btn-primary {
@@ -203,6 +203,11 @@ body {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   color: #e74c3c;
+}
+@media (max-width: 49em) {
+  .grid-control #error-message {
+    left: 41%;
+  }
 }
 .grid-control .input-wrapper {
   display: flex;

@@ -518,9 +518,7 @@ var screenWidth = window.innerWidth || document.documentElement.clientWidth || d
  **/
 
 window.onload = function () {
-  setTimeout(function () {
-    screenWidth > 500 ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8) : new Grid(6) && (document.getElementById("grid-size").defaultValue = 6);
-  }, 10);
+  screenWidth > 500 ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8) : new Grid(6) && (document.getElementById("grid-size").defaultValue = 6);
 }; // ALLOw TO CHANGE GRID SIZE
 
 
@@ -531,7 +529,7 @@ document.getElementById("grid-size").addEventListener("change", function (e) {
 
   if (screenWidth <= 500) {
     //grid size shuld be between 4 and 6
-    gridSize == "" ? errorMessage.push("Grid size input field should not be empty") : gridSize > 6 || gridSize < 3 ? errorMessage.push("Grid size should be between 5 and 10") : new Grid(gridSize); // If  grid size is less than 3 and greater than 6 then dispaly error message
+    gridSize == "" ? errorMessage.push("Grid size input field should not be empty") : gridSize > 6 || gridSize < 3 ? errorMessage.push("Grid size should be between 3 and 6") : new Grid(gridSize); // If  grid size is less than 3 and greater than 6 then dispaly error message
 
     errorMessage.length > 0 ? errorElement.innerText = errorMessage.join(", ") : errorElement.innerText = " ";
   } else {

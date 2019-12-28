@@ -114,7 +114,12 @@
     left: 50%;
     bottom: 0.5rem;
     @include transform-x-minus50percent;
-    color: $color-primary
+    color: $color-primary;
+
+    // on screen width <=ipad screen width
+    @include respond-mediaQuery(ipad) {
+      left: 41%;
+    }
   }
 
   .input-wrapper {

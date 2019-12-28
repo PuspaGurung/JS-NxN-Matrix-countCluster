@@ -15,6 +15,7 @@
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
 }
+
 @mixin transform-x-minus50percent {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -22,6 +23,7 @@
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
 }
+
 //TRANSITION
 @mixin transition-delay-sm {
   transition: all 0.3s;
@@ -40,6 +42,7 @@
   -ms-transform: scale(1.1);
   -o-transform: scale(1.1);
 }
+
 @mixin transform-scale-xlg {
   transform: scale(1.15);
   -webkit-transform: scale(1.15);
@@ -67,21 +70,40 @@
   @if $breakpoint==phone {
     @media (max-width: 37.5em) {
       @content;
-    } // 600px = 600/16 = 37.5em;
+    }
+
+    // width <= 600px
   }
-  @if $breakpoint==tab-port {
-    @media (max-width: 56.26em) {
+
+  @if $breakpoint==ipad {
+    @media (max-width: 49em) {
       @content;
-    } // 900px
+    }
+
+    // width <= 769px
   }
-  @if $breakpoint==tab-landscape {
-    @media (max-width: 75em) {
+
+  @if $breakpoint==ipad-pro {
+    @media (max-width: 65em) {
       @content;
-    } // 1200px
+    }
+
+    // width <= 1040px;
   }
+
+  @if $breakpoint==laptop {
+    @media (max-width: 80em) {
+      @content;
+    }
+
+    // width <= 1280px
+  }
+
   @if $breakpoint==big-screen {
-    @media (min-width: 75em) {
+    @media (min-width: 80em) {
       @content;
-    } //  (  screen width is > 1200px)
+    }
+
+    //  width > 1280px)
   }
 }

@@ -283,10 +283,7 @@ let screenWidth = window.innerWidth ||
  * width >=500px 
  **/
 window.onload = () => {
-  setTimeout(() => {
-    (screenWidth > 500) ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8): new Grid(6) && (document.getElementById("grid-size").defaultValue = 6)
-  }, 10)
-
+  (screenWidth > 500) ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8): new Grid(6) && (document.getElementById("grid-size").defaultValue = 6)
 };
 
 // ALLOw TO CHANGE GRID SIZE
@@ -299,7 +296,7 @@ document.getElementById("grid-size").addEventListener("change", e => {
     gridSize == "" ?
       errorMessage.push("Grid size input field should not be empty") :
       gridSize > 6 || gridSize < 3 ?
-      errorMessage.push("Grid size should be between 5 and 10") :
+      errorMessage.push("Grid size should be between 3 and 6") :
       new Grid(gridSize);
 
     // If  grid size is less than 3 and greater than 6 then dispaly error message
