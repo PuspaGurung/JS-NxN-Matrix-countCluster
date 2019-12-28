@@ -40,12 +40,7 @@ body {
   line-height: inherit;
   box-sizing: border-box;
   line-height: inherit;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(0, 0, 0, 0.6) 100%,
-      transparent 50%
-    ),
-    url(./../img/bg.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%, transparent 50%), url(/bg.c04a5f46.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center right;
@@ -81,14 +76,6 @@ body {
   background: #ccc;
 }
 
-.wrapper {
-  margin: 0 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
 .grid-wrapper {
   width: 100%;
   position: relative;
@@ -103,6 +90,10 @@ body {
   margin: 3rem 0 2.5rem;
   color: #f4f5f9;
 }
+.grid-wrapper .grid-header__para {
+  margin-bottom: 2rem;
+  color: #ccc;
+}
 .grid-wrapper .grid-header__seperator {
   height: 0.5rem;
   width: 0.5rem;
@@ -116,8 +107,7 @@ body {
   display: inline-block;
   margin-bottom: 4rem;
 }
-.grid-wrapper .grid-header__seperator::before,
-.grid-wrapper .grid-header__seperator::after {
+.grid-wrapper .grid-header__seperator::before, .grid-wrapper .grid-header__seperator::after {
   content: "";
   height: 1px;
   width: 5rem;
@@ -199,18 +189,28 @@ body {
 .grid-control {
   padding: 3rem;
   width: 100%;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.7) 100%,
-    rgba(0, 0, 0, 0.6) 100%,
-    transparent 50%
-  );
+  background: linear-gradient(rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.6) 100%, transparent 50%);
   margin-bottom: 3rem;
+  position: relative;
 }
-.grid-control__color {
-  width: 100%;
+.grid-control #error-message {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  color: #e74c3c;
+}
+.grid-control .input-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+.grid-control__color {
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
@@ -225,20 +225,22 @@ body {
 .grid-control__color img {
   margin: 0 1rem;
 }
-.grid-control__size #gridSize {
+.grid-control__size #grid-size {
   line-height: normal;
   border: 1px solid #6a6a6a;
   outline: none;
   display: inline-block;
-  margin: 0 1rem;
+  margin-left: 2rem;
   text-align: center;
   padding: 0.8rem 1rem;
   width: 10rem;
   line-height: 2rem;
 }
-.grid-control__size #gridSize:focus {
+.grid-control__size #grid-size:focus {
   outline: 2px dashed blue;
 }
 .grid-control__size .error-message {
   padding-right: 1rem;
 }
+
+/*# sourceMappingURL=/main.fb6bbcaf.css.map */

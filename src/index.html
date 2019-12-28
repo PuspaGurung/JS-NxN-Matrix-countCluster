@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Matrix, count Number of items of the particular cluster when user click on
+      it
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="grid-wrapper">
+        <div class="grid-header">
+          <h1 class="grid-header__title">NxN GRID</h1>
+          <p class="grid-header__para">
+            Get Number of items of the particular cluster when you click on it
+          </p>
+          <span class="grid-header__seperator"></span>
+        </div>
+      </div>
+
+      <div class="grid-control">
+        <div class="grid-control__color input-wrapper">
+          <label for="change-grid-bg-color">
+            Select cluster background Color:</label
+          >
+          <input
+            type="color"
+            name="bg-color"
+            id="change-grid-bg-color"
+            name="change-grid-bg-color"
+          />
+        </div>
+        <div class="grid-control__size input-wrapper">
+          <label for="grid-size">Select Grid size (NxN)</label>
+          <input
+            type="number"
+            id="grid-size"
+            min="5"
+            max="10"
+            placeholder="Grid size"
+            name="grid-size"
+          />
+        </div>
+        <span id="error-message"></span>
+      </div>
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass scss/main.scss css/style.css -w"
+    "dev": "parcel src/index.html",
+    "production": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/PuspaGurung/JS-NxN-Matrix-countCluster#readme",
   "dependencies": {
-    "init": "^0.1.2",
-    "node-sass": "^4.13.0"
+    "init": "^0.1.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.24.0"
   }
 }

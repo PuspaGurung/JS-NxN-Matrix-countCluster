@@ -11,21 +11,26 @@ html {
   @include respond-mediaQuery(big-screen) {
     font-size: 62.5%; // 1rem = 10px; (100/16)*10 = 62.5%;
   }
+
   @include respond-mediaQuery(tab-landscape) {
     font-size: 56.25%; // 1rem = 9px; (100/16)*9= 56.25%;
   }
+
   @include respond-mediaQuery(tab-port) {
     font-size: 50%; // 1rem = 8px; (100/16)*8= 50%;
   }
+
   @include respond-mediaQuery(phone) {
     font-size: 40%; // 1rem = 6.4px; (100/16)*6.4= 40%;
   }
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Roboto", sans-serif;
   color: $color-white-secondary;
@@ -33,12 +38,10 @@ body {
   line-height: inherit;
   box-sizing: border-box;
   line-height: inherit;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.9) 0%,
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9) 0%,
       rgba(0, 0, 0, 0.6) 100%,
-      transparent 50%
-    ),
-    url(./../../img/bg.jpg);
+      transparent 50%),
+    url(./../img/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center right;
