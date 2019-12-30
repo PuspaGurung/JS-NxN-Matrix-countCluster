@@ -312,8 +312,8 @@ function () {
   }, {
     key: "handleBgColor",
     value: function handleBgColor() {
-      var btnApplyColor = document.getElementById("change-grid-bg-color");
-      btnApplyColor.addEventListener("change", function (e) {
+      var inputBgColor = document.getElementById("change-grid-bg-color");
+      inputBgColor.addEventListener("change", function (e) {
         e.preventDefault();
         var bgColor = e.target.value;
         var getItemListDOM = document.querySelectorAll(".grid__filled");
@@ -507,23 +507,24 @@ function () {
   }]);
 
   return Grid;
-}(); //get screen width
+}(); //GRID DEFAULT SIZE and GENERATE RANDOM GRID WITH DEFAULT SIZE
 
 
-var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; // Default grid size  
+var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; // Default grid size at windowOnLoad
 
 /** Default grid size based on screen width
  *  width <=500px
  * width >=500px 
  **/
+// Display grid with default grid size:: when windowOnLoad
 
 window.onload = function () {
   screenWidth > 500 ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8) : new Grid(6) && (document.getElementById("grid-size").defaultValue = 6);
-}; // ALLOw TO CHANGE GRID SIZE
+}; // ALLOW USER TO CHANGE GRID SIZE
 
 
-document.getElementById("grid-size").addEventListener("change", function (e) {
-  var gridSize = e.target.value;
+document.getElementById("btn-set-grid-size").addEventListener("click", function (e) {
+  var gridSize = document.getElementById('grid-size').value;
   var errorElement = document.getElementById("error-message");
   var errorMessage = [];
 
@@ -537,6 +538,14 @@ document.getElementById("grid-size").addEventListener("change", function (e) {
     gridSize == "" ? errorMessage.push("Grid size input field should not be empty") : gridSize > 10 || gridSize < 5 ? errorMessage.push("Grid size should be between 5 and 10") : new Grid(gridSize); // If  grid size is less than 5 and greater than 10 then dispaly error message
 
     errorMessage.length > 0 ? errorElement.innerText = errorMessage.join(", ") : errorElement.innerText = " ";
+  } // BG COLOR
+
+
+  var colorClusterBg = document.getElementById('change-grid-bg-color').value;
+  var allFilledSquare = document.querySelectorAll('.grid__filled');
+
+  for (var i = 0; i < allFilledSquare.length; i++) {
+    allFilledSquare[i].style.background = "".concat(colorClusterBg);
   }
 });
 },{"./../scss/main.scss":"scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -567,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61919" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64263" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

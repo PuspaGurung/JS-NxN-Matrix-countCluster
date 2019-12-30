@@ -5,17 +5,13 @@
   margin-bottom: 3rem;
 
   .grid-header {
-    text-align: center;
     margin-bottom: 2rem;
+    text-align: center;
 
     &__title {
-      margin: 3rem 0 2.5rem;
+      margin: 3rem 0 2.5rem 4rem;
       color: $color-white-secondary;
-    }
-
-    &__para {
-      margin-bottom: 2rem;
-      color: $color-grey;
+      color: $color-white-primary;
     }
 
     &__seperator {
@@ -25,7 +21,7 @@
       background-color: $color-primary;
       position: relative;
       display: inline-block;
-      margin-bottom: 4rem;
+      margin-bottom: 2.2rem;
 
       &::before,
       &::after {
@@ -98,9 +94,13 @@
       color: white;
     }
   }
+
 }
 
 .grid-control {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row;
   padding: 3rem;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.7) 100%,
@@ -108,6 +108,10 @@
       transparent 50%);
   margin-bottom: 3rem;
   position: relative;
+
+  @include respond-mediaQuery(phone) {
+    flex-flow: column;
+  }
 
   #error-message {
     position: absolute;
@@ -126,14 +130,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+  }
+
+  &__color,
+  &__size,
+  &__random-grid {
+    padding: 0 1.5rem 0;
+    border-right: 1px solid $color-white-secondary;
+    border-left: 1px solid $color-white-secondary;
+
+    @include respond-mediaQuery(phone) {
+      margin-bottom: 1rem;
+      border-left: none !important;
+      border-right: none !important;
+      padding-bottom: 1rem;
+    }
   }
 
   &__color {
-    border-bottom: 1px solid $color-grey;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
+    @include respond-mediaQuery(phone) {
+      border-bottom: 1px solid;
+    }
+  }
 
+  &__color {
     #bg-color {
       width: 4.5rem;
       height: 2.5rem;
@@ -145,6 +165,16 @@
     img {
       margin: 0 1rem;
     }
+
+    label {
+      padding-right: 1rem;
+    }
+
+    #change-grid-bg-color {
+      height: 3.5rem;
+      width: 4rem;
+      cursor: pointer;
+    }
   }
 
   &__size {
@@ -153,11 +183,12 @@
       border: 1px solid $color-secondary;
       outline: none;
       display: inline-block;
-      margin-left: 2rem;
+      margin: 0 2rem;
       text-align: center;
       padding: 0.8rem 1rem;
       width: 10rem;
       line-height: 2rem;
+
 
       &:focus {
         outline: 2px dashed blue;
@@ -166,6 +197,29 @@
 
     .error-message {
       padding-right: 1rem;
+    }
+  }
+
+  &__random-grid {
+    @include respond-mediaQuery(phone) {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.grid-info {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.6) 100%, transparent 50%);
+
+  .grid-info__list {
+    color: $color-grey;
+    list-style: none;
+
+    .fa {
+      color: $color-primary;
     }
   }
 }

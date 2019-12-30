@@ -9,15 +9,21 @@
 }
 
 .btn-primary {
-  padding: 1rem 1.8rem;
+  text-transform: uppercase;
   outline: none;
+  padding: 0 1.5rem;
+  line-height: 4rem;
+  background-color: $color-primary;
+  color: $color-white-secondary;
   border: none;
   cursor: pointer;
+  opacity: 0.9;
   @include transition-delay-sm;
-  font-size: inherit;
-  background: $color-white-secondary;
 
   &:hover {
-    background: $color-grey;
+    opacity: 1;
+    color: $color-primary;
+    background-color: $color-white-primary
   }
+
 }

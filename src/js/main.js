@@ -100,8 +100,8 @@ class Grid {
 
   // Change the background color of cluster 
   handleBgColor() {
-    let btnApplyColor = document.getElementById("change-grid-bg-color");
-    btnApplyColor.addEventListener("change", e => {
+    let inputBgColor = document.getElementById("change-grid-bg-color");
+    inputBgColor.addEventListener("change", e => {
       e.preventDefault();
       let bgColor = e.target.value;
       let getItemListDOM = document.querySelectorAll(".grid__filled");
@@ -271,24 +271,25 @@ class Grid {
   }
 }
 
-//get screen width
+//GRID DEFAULT SIZE and GENERATE RANDOM GRID WITH DEFAULT SIZE
 let screenWidth = window.innerWidth ||
   document.documentElement.clientWidth ||
   document.body.clientWidth;
 
-// Default grid size  
-
+// Default grid size at windowOnLoad
 /** Default grid size based on screen width
  *  width <=500px
  * width >=500px 
  **/
+
+// Display grid with default grid size:: when windowOnLoad
 window.onload = () => {
-  (screenWidth > 500) ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8): new Grid(6) && (document.getElementById("grid-size").defaultValue = 6)
+  (screenWidth > 500) ? new Grid(8) && (document.getElementById("grid-size").defaultValue = 8): new Grid(6) && (document.getElementById("grid-size").defaultValue = 6);
 };
 
-// ALLOw TO CHANGE GRID SIZE
-document.getElementById("grid-size").addEventListener("change", e => {
-  let gridSize = e.target.value;
+// ALLOW USER TO CHANGE GRID SIZE
+document.getElementById("btn-set-grid-size").addEventListener("click", e => {
+  let gridSize = document.getElementById('grid-size').value;
   let errorElement = document.getElementById("error-message");
   let errorMessage = [];
   if (screenWidth <= 500) {
@@ -316,5 +317,10 @@ document.getElementById("grid-size").addEventListener("change", e => {
       (errorElement.innerText = errorMessage.join(", ")) :
       (errorElement.innerText = " ");
   }
-
+  // BG COLOR
+  let colorClusterBg = document.getElementById('change-grid-bg-color').value;
+  let allFilledSquare = document.querySelectorAll('.grid__filled');
+  for (let i = 0; i < allFilledSquare.length; i++) {
+    allFilledSquare[i].style.background = `${colorClusterBg}`;
+  }
 });

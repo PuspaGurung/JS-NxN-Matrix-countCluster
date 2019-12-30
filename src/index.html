@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>
-      Matrix, count Number of items of the particular cluster when user click on
-      it
-    </title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="grid-wrapper">
-        <div class="grid-header">
-          <h1 class="grid-header__title">NxN GRID</h1>
-          <p class="grid-header__para">
-            Get Number of items of the particular cluster when you click on it
-          </p>
-          <span class="grid-header__seperator"></span>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>
+    Matrix, count Number of items of the particular cluster when user click on
+    it
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-      <div class="grid-control">
-        <div class="grid-control__color input-wrapper">
-          <label for="change-grid-bg-color">
-            Select cluster background Color:</label
-          >
-          <input
-            type="color"
-            name="bg-color"
-            id="change-grid-bg-color"
-            name="change-grid-bg-color"
-          />
-        </div>
-        <div class="grid-control__size input-wrapper">
-          <label for="grid-size">Select Grid size (NxN)</label>
-          <input
-            type="number"
-            id="grid-size"
-            min="5"
-            max="10"
-            placeholder="Grid size"
-            name="grid-size"
-          />
-        </div>
-        <span id="error-message"></span>
+<body>
+  <div class="container">
+    <div class="grid-wrapper">
+      <div class="grid-header">
+        <h1 class="grid-header__title">N<i class="fa fa-times"></i>N GRID</h1>
+        <span class="grid-header__seperator"></span>
       </div>
     </div>
-    <script src="./js/main.js"></script>
-  </body>
+
+    <div class="grid-control">
+      <div class="grid-control__color input-wrapper">
+        <label for="change-grid-bg-color">
+          Select cluster background Color:</label>
+        <input type="color" name="bg-color" id="change-grid-bg-color" name="change-grid-bg-color" value="#e00201" />
+      </div>
+      <div class="grid-control__size input-wrapper">
+        <label for="grid-size">Input Grid size (N<i class="fa fa-times"></i>N)</label>
+        <input type="number" id="grid-size" min="5" max="10" placeholder="Grid size" name="grid-size" />
+        <button id="btn-set-grid-size" class="btn-primary">apply</button>
+      </div>
+      <span id="error-message"></span>
+      <!--      <div class="grid-control__random-grid input-wrapper">
+        <button class="get-random-grid btn-primary">GET RANDOM GRID</button>
+      </div>
+-->
+    </div>
+    <div class="grid-info">
+      <ul class="grid-info__list">
+        <li><i class="fa fa-angle-double-right"></i> You can Get Number of items of the particular cluster when you
+          click on it</li>
+        <li><i class="fa fa-angle-double-right"></i> You can change cluster background color </li>
+        <li><i class="fa fa-angle-double-right"></i> You can set grid size</li>
+        <li><i class="fa fa-angle-double-right"></i> You can generate random grid</li>
+      </ul>
+    </div>
+  </div>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>
